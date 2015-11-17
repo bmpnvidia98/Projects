@@ -20,7 +20,7 @@ void printb(){
 }
 
 int isvalid(char piece, char ix1, char iy1, char mov, char fx1, char fy1);
-	
+
 
 int main(){
 	char ix, iy, mov, fx, fy; // Initial X, Initial Y, Move, Final X, Final Y
@@ -33,8 +33,8 @@ int main(){
 			printf("Moves are denoted as \"-\", and attacks are \"x\"\n");
 			goto moving;
 				}
-		
-	
+
+
 
 	printb();
 	return 0;
@@ -44,7 +44,7 @@ int isvalid(char piece, char ix1, char iy1, char mov, char fx1, char fy1){
 	int result;
 	int fx = fx1 - 'a';
 	int ix = ix1 - 'a'; // Converting chars to int for easier use later
-	int iy = iy1 - '0';	
+	int iy = iy1 - '0';
 	int fy = fy1 - '0';
 	switch(mov){
 		case 'x':
@@ -58,15 +58,16 @@ int isvalid(char piece, char ix1, char iy1, char mov, char fx1, char fy1){
 						return 1;
 					return 0;
 				case 'r':
-					if(board[fx][fy] != '_' && (fx - fy != ix-iy) && (ix -fx != 0 || iy - fy !=0)){
-						
-					}
-				case 'p':
+					if(board[fx][fy] != '_' && (fx - fy != ix-iy) && (ix -fx != 0 || iy - fy !=0))
+						return 1;
+                    return 0;
+                case 'n':
+                    if(board[fx][fy] != '_' && ((abs(fx - ix) == 3 && abs(fy - iy) == 1) || (abs(fy - iy) == 3 && abs(fx - ix) == 1)  ))
 				case 'p':
 				case 'p':
 
 		case '-':
-	
-		
+
+
 
 }
