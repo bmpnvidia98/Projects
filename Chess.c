@@ -52,11 +52,15 @@ int isvalid(char piece, char ix1, char iy1, char mov, char fx1, char fy1){
 				case 'p':
 					if(board[fx][fy] != '_' && (abs(fx - ix) == 1 && abs(fy - iy) == 1))
 						return 1;
-					else
 					return 0;
 				case 'b':
-					
-				case 'p':
+					if(board[fx][fy] != '_' && (abs(fx-ix))/(abs(fy-iy)) == 1)
+						return 1;
+					return 0;
+				case 'r':
+					if(board[fx][fy] != '_' && (fx - fy != ix-iy) && (ix -fx != 0 || iy - fy !=0)){
+						
+					}
 				case 'p':
 				case 'p':
 				case 'p':
