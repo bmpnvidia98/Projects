@@ -5,6 +5,8 @@
 #include <math.h>
 
 char board[8][8] = {{'r','n','b','k','q','b','n','r'},{'p','p','p','p','p','p','p','p'},{'_','_','_','_','_','_','_','_'},{'_','_','_','_','_','_','_','_'},{'_','_','_','_','_','_','_','_'},{'_','_','_','_','_','_','_','_'},{'P','P','P','P','P','P','P','P'},{'R','N','B','K','Q','B','N','R'}};
+char state;
+char turn;
 
 void printb(){
 	extern char board[8][8];
@@ -26,13 +28,13 @@ int main(){
 	char ix, iy, mov, fx, fy; // Initial X, Initial Y, Move, Final X, Final Y
 	printb();
 	moving:
-	printf("Make your move:\n");
-	scanf("%c%c%c%c%c",ix, iy, mov, fx, fy);
-		if(ix == ' ' ||iy == ' ' ||mov == ' ' ||fx == ' ' ||fy == ' '){
-			printf("You must enter in format (X-coord)(Y-coord)(Move/attack)(X-coord)(Y-coord)\n");
-			printf("Moves are denoted as \"-\", and attacks are \"x\"\n");
-			goto moving;
-				}
+        printf("You must enter in format (X-coord)(Y-coord)(Move/attack)(X-coord)(Y-coord)\n");
+        printf("Moves are denoted as \"-\", and attacks are \"x\", for a castle, type O-O, for queen-side castle type O-O-O.\n");
+        printf("Make your move:\n");
+        scanf("%c%c%c%c%c",ix, iy, mov, fx, fy);
+            if(ix == ' ' ||iy == ' ' ||mov == ' ' ||fx == ' ' ||fy == ' '){
+                goto moving;
+                    }
 
 
 
@@ -58,12 +60,15 @@ int isvalid(char piece, char ix1, char iy1, char mov, char fx1, char fy1){
 						return 1;
 					return 0;
 				case 'r':
-					if(board[fx][fy] != '_' && (fx - fy != ix-iy) && (ix -fx != 0 || iy - fy !=0))
+					if(board[fx][fy] != '_' && (!(fx-ix != 0) != !(fy - iy != 0))
 						return 1;
                     return 0;
                 case 'n':
                     if(board[fx][fy] != '_' && ((abs(fx - ix) == 3 && abs(fy - iy) == 1) || (abs(fy - iy) == 3 && abs(fx - ix) == 1)  ))
-				case 'p':
+                        return 1;
+                    return 0;
+				case 'k':
+				    if(board[fx][fy] != '_' && )
 				case 'p':
 
 		case '-':
