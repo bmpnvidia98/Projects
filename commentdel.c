@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[]){
 	char fname[20],fname1[20];
-	int c, prevc;
+	int c, prevc, prevc1;
 		if(argc < 2){
 		printf("You need to have a filename, in format ./commentdel (filename)\n");
 		return 0;
@@ -19,24 +19,26 @@ int main(int argc, char *argv[]){
 	fp = fopen(fname, "r");
 	fp1 = fopen(fname1, "w");
 	prevc = '0';
+	prevc1 = '0';
 	while((c = getc(fp)) != EOF){
-		if(c != '/' && prevc == '/'){
-			if(c == '*')
-				while(c != '/' && prevc != '*'){
-					c = getc(fp);
-					prevc = c;}
-			else fprintf(fp1, "/");
+		if(c == '*' && prevc == '/'){
+			while((c = getc(fp)) != '/' || prevc != '*'){
+				prevc = c;
+				prevc1 = prevc;
 				}
+			}
 		else if(c == '/' && prevc != '/')
 			goto b;
 		else if(c == '/' && prevc == '/')
 			while(c != '\n'){
 				c = getc(fp);
 				prevc = c;
+				prevc1 = prevc;
 				}
 		else {fprintf(fp1, "%c", c);}
 		b:
 		prevc = c;
+		prevc1 = prevc;
 		}
 		
 	return 0;
