@@ -1,12 +1,17 @@
 #include <stdio.h>
 #include <time.h>
+#include <string.h>
 
 int main(int argc, char *argv[]) {
-	char filen[20];
-	scanf("%s", filen);
-
+	if(argc<2){
+		printf("You need to have a filename\n");
+		return 1;
+		}
+	char fname[20];
+	strcpy(fname, argv[1]);
+	strcat(fname, ".c");
 	FILE *fp;
-	fp = fopen(filen, "w");
+	fp = fopen(fname, "w");
 
 	if(fp == NULL){
 		printf("Couldn't open file: Error\n");

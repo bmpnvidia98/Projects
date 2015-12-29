@@ -1,7 +1,5 @@
 // Created by Brian Peters on Thu Nov 12 16:09:27 2015
-
 #include <stdio.h>
-
 
 void printgraph(char graph[10][10]){
 	int i, j;
